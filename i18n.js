@@ -19,7 +19,8 @@
       siteWeatherDesc: 'Fast forecasts. No popups, no tracking.',
       siteSportsDesc: 'Live scores without the gambling nags.',
       siteMenuDesc: 'Recipes. Just the food, no life story.',
-      inProgress: 'In progress: NoAdsImages · MassageBuddy',
+      sitePhotosDesc: 'Batch image editing in your browser. No uploads, no signup, no ads.',
+      siteMassageDesc: 'Press play, give your partner a great massage. 30 or 60 minutes.',
 
       whyLabel: 'Why bother',
       whySpeedTitle: 'Speed.',
@@ -36,7 +37,7 @@
       privacyHeading: 'Privacy',
       privacyP1: 'This page makes zero third-party requests. No analytics, no cookies, no fingerprinting, no remote fonts, no embedded widgets. Fonts and stylesheets are served from noadsdude.com.',
       privacyP2: 'The only data stored locally is your theme preference, kept in your browser\'s localStorage (not a cookie).',
-      privacyP3: 'Outbound links to sibling sites (noadsweather.com, noadssports.com, backonthemenu.com) and to Ko-fi take you off this site; their own privacy practices apply once you click.',
+      privacyP3: 'Outbound links to sibling sites (noadsweather.com, noadssports.com, backonthemenu.com, noadsphotos.com, partnermassage.app) and to Ko-fi take you off this site; their own privacy practices apply once you click.',
       privacyStandalone: 'Read this on its own page →',
 
       footerStance: 'no cookies · no tracking · no ads — by definition.',

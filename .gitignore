@@ -1,0 +1,22 @@
+# OS / editor detritus
+node_modules/
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.log
+*~
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+
+# Claude Code local state
+.claude/
+
+# Project artifacts that live on disk but shouldn't ship to noadsdude.com
+# (Design docs and Claude-specific notes. Useful locally; not for visitors.)
+.impeccable.md
+CLAUDE.md
+docs/
+tools/

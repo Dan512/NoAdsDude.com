@@ -1,0 +1,390 @@
+/* ============================================================
+   NoAdsDude landing page styles
+   See ../.impeccable.md and docs/plans/...-design.md for context.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/spectral-500-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/atkinson-hyperlegible-400-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/atkinson-hyperlegible-700-latin.woff2') format('woff2');
+}
+
+:root {
+  /* Type families */
+  --font-display: 'Spectral', Georgia, 'Times New Roman', serif;
+  --font-body: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing (4pt scale) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Layout */
+  --content-max: 36rem;
+  --gutter: clamp(1rem, 5vw, 2rem);
+
+  /* Colors (light theme defaults — overridden in :root[data-theme="dark"] and @media dark) */
+  --paper:  oklch(0.97 0.005 80);
+  --ink:    oklch(0.22 0.015 40);
+  --rule:   oklch(0.85 0.008 60);
+  --muted:  oklch(0.45 0.012 50);
+  --accent: oklch(0.48 0.14 30);
+
+  color-scheme: light dark;
+}
+
+/* Dark theme — applies when JS has set data-theme, OR when system says dark and no override */
+:root[data-theme="dark"] {
+  --paper:  oklch(0.16 0.012 40);
+  --ink:    oklch(0.92 0.008 80);
+  --rule:   oklch(0.30 0.012 50);
+  --muted:  oklch(0.65 0.012 60);
+  --accent: oklch(0.68 0.13 35);
+}
+
+/* CSS-only fallback for users with JS disabled: respect prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    --paper:  oklch(0.16 0.012 40);
+    --ink:    oklch(0.92 0.008 80);
+    --rule:   oklch(0.30 0.012 50);
+    --muted:  oklch(0.65 0.012 60);
+    --accent: oklch(0.68 0.13 35);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;       /* 17px */
+  line-height: 1.6;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  min-height: 100dvh;
+}
+
+/* Light text in dark theme needs slightly more leading */
+:root[data-theme="dark"] body { line-height: 1.65; }
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Display typography */
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+}
+h1 { font-size: clamp(2.25rem, 1rem + 4.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.01em; }
+
+/* Section labels (small caps via letter-spacing + uppercase — Spectral's smcp is optional polish) */
+.section-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--space-6);
+}
+
+/* Body paragraphs cap at ~65ch */
+p { max-width: 62ch; margin: 0 0 var(--space-4); }
+
+/* Vertical-flow layout. Centered column with side gutters. */
+main, .site-header, .site-footer {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+main { display: flex; flex-direction: column; gap: var(--space-16); padding-block: var(--space-16) var(--space-24); }
+@media (min-width: 720px) {
+  main { gap: var(--space-24); padding-block: var(--space-24) var(--space-24); }
+}
+
+main > section { padding-top: var(--space-12); border-top: 1px solid var(--rule); }
+main > section:first-child { padding-top: 0; border-top: 0; }   /* manifesto */
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: var(--space-4) 0;
+  padding-top: clamp(var(--space-4), 3vh, var(--space-8));
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1rem + 1vw, 1.75rem);
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.wordmark .mark { color: var(--accent); }
+
+#theme-toggle {
+  font-size: 1.125rem;
+  width: 2rem; height: 2rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+#theme-toggle:hover, #theme-toggle:focus-visible { color: var(--ink); }
+
+/* Icon visibility per theme. Set in JS by toggling data-theme on <html>. */
+#theme-toggle [data-icon-light] { display: none; }
+#theme-toggle [data-icon-dark]  { display: inline; }
+:root[data-theme="dark"] #theme-toggle [data-icon-light] { display: inline; }
+:root[data-theme="dark"] #theme-toggle [data-icon-dark]  { display: none; }
+/* CSS-only fallback when no data-theme set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) #theme-toggle [data-icon-light] { display: inline; }
+  :root:not([data-theme="light"]):not([data-theme="dark"]) #theme-toggle [data-icon-dark]  { display: none; }
+}
+
+.manifesto h1 { margin-bottom: var(--space-8); }
+.manifesto p + p { margin-top: var(--space-4); }
+
+.site-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: site;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-list > li {
+  counter-increment: site;
+  border-bottom: 1px solid var(--rule);
+}
+.site-list > li:last-child { border-bottom: 0; }
+
+.site-link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "num name arrow"
+    ".   desc arrow"
+    ".   url  .";
+  column-gap: var(--space-4);
+  row-gap: var(--space-1);
+  align-items: baseline;
+  padding-block: var(--space-6);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-link::before {
+  content: counter(site, decimal-leading-zero);
+  grid-area: num;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding-top: 0.4em;     /* baseline-align with the site name's cap-height */
+}
+
+.site-link .site-name {
+  grid-area: name;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  line-height: 1.15;
+}
+.site-link .site-desc { grid-area: desc; color: var(--ink); }
+.site-link .site-url  { grid-area: url;  color: var(--accent); font-size: 0.9375rem; }
+.site-link .site-arrow {
+  grid-area: arrow;
+  align-self: center;
+  color: var(--accent);
+  font-size: 1.5rem;
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.site-link:hover .site-arrow,
+.site-link:focus-visible .site-arrow { transform: translateX(4px); }
+
+.site-link:hover .site-name,
+.site-link:focus-visible .site-name {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.in-progress {
+  margin-top: var(--space-6);
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.why-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  counter-reset: why;
+}
+.why-list > li {
+  counter-increment: why;
+  padding-left: 2.25rem;
+  position: relative;
+  max-width: 62ch;
+}
+.why-list > li::before {
+  content: counter(why);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.why-list strong { font-weight: 700; }
+.why-list strong + span::before { content: ' '; }
+
+.support p { max-width: 62ch; }
+.support-cta {
+  margin-top: var(--space-6);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+}
+.support-cta a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.caption {
+  margin-top: var(--space-4);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.privacy-panel {
+  margin-top: var(--space-12);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-8);
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+.privacy-panel summary {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: var(--space-4);
+}
+.privacy-panel summary::-webkit-details-marker { display: none; }
+.privacy-panel summary::before {
+  content: '▸ ';
+  display: inline-block;
+  margin-right: 0.4em;
+  transition: transform 200ms ease-out;
+}
+.privacy-panel[open] summary::before { transform: rotate(90deg); }
+.privacy-panel p { max-width: 62ch; }
+
+.site-footer {
+  padding-block: var(--space-12) var(--space-8);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.site-footer .stance { font-style: italic; margin: 0 auto var(--space-2); max-width: none; }
+.site-footer .footer-meta { margin: 0; max-width: none; }
+.site-footer a { color: var(--muted); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.site-footer a:hover, .site-footer a:focus-visible { color: var(--accent); }
+
+/* Headline reveal: starts hidden and slid 10px down; .ready on <html> reveals it */
+.manifesto h1 {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ready .manifesto h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion: never animate, always show. */
+@media (prefers-reduced-motion: reduce) {
+  .manifesto h1 {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .site-link .site-arrow { transition: none; }
+  .privacy-panel summary::before { transition: none; }
+}
+
+/* Privacy / 404 standalone pages */
+main > section > h2.section-label { margin-top: var(--space-8); }
+main > section > h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 1rem + 3vw, 3rem);
+  line-height: 1.1;
+  margin: 0 0 var(--space-6);
+}

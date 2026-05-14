@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <title>Privacy — NoAdsDude</title>
+  <meta name="description" content="Privacy policy for noadsdude.com: zero third-party requests, no cookies, no tracking.">
+  <link rel="canonical" href="https://noadsdude.com/privacy.html">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preload" href="/fonts/spectral-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('noadsdude:theme');
+        var theme = (stored === 'light' || stored === 'dark')
+          ? stored
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="NoAdsDude home">
+      No<span class="mark">A</span>dsDude
+    </a>
+  </header>
+
+  <main>
+    <section>
+      <h1>Privacy</h1>
+      <p>This page (and every other NoAdsDude site) is built around one simple promise: <strong>no surveillance.</strong></p>
+
+      <h2 class="section-label">What this page does</h2>
+      <p>The noadsdude.com landing page makes <strong>zero third-party requests</strong>. No analytics, no cookies, no fingerprinting, no remote fonts, no embedded widgets, no tag managers, no pixels. The only files loaded are served from noadsdude.com itself: HTML, CSS, three woff2 font files, and a tiny favicon.</p>
+      <p>The only data stored locally is your theme preference (light or dark), kept in your browser's localStorage. That is not a cookie — it is never sent to any server.</p>
+
+      <h2 class="section-label">When you click an outbound link</h2>
+      <p>Links to sibling sites (noadsweather.com, noadssports.com, backonthemenu.com) and to Ko-fi take you off noadsdude.com. Those destinations have their own privacy practices. Each sibling site discloses its own third-party calls; check their privacy panels for the details.</p>
+
+      <h2 class="section-label">Open source</h2>
+      <p>The NoAdsDude family is open source. See <a href="https://github.com/Dan512/noadsweather" target="_blank" rel="noopener noreferrer">github.com/Dan512/noadsweather</a> for a representative example of how these sites are built.</p>
+
+      <p style="margin-top: 3rem;"><a href="/">← back to noadsdude.com</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-meta"><a href="/">noadsdude.com</a> &nbsp;·&nbsp; Made by Dan</p>
+  </footer>
+</body>
+</html>

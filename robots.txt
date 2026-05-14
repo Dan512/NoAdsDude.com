@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://noadsdude.com/sitemap.xml

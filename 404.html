@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <title>Not found — NoAdsDude</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('noadsdude:theme');
+        var theme = (stored === 'light' || stored === 'dark')
+          ? stored
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="NoAdsDude home">No<span class="mark">A</span>dsDude</a>
+  </header>
+  <main>
+    <section>
+      <h1>404.</h1>
+      <p>Looks like that page doesn't exist. Try the <a href="/">home page</a>.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p class="footer-meta"><a href="/">noadsdude.com</a> &nbsp;·&nbsp; Made by Dan</p>
+  </footer>
+</body>
+</html>

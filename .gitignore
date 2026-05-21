@@ -11,12 +11,20 @@ Thumbs.db
 __pycache__/
 *.pyc
 
-# Claude Code local state
+# Coding-agent local state
 .claude/
+.agents/
 
 # Project artifacts that live on disk but shouldn't ship to noadsdude.com
-# (Design docs and Claude-specific notes. Useful locally; not for visitors.)
+# (Design docs and agent-specific notes. Useful locally; not for visitors.)
 .impeccable.md
 CLAUDE.md
+AGENTS.md
 docs/
 tools/
+
+# Unused / oversized favicon variants kept on disk for archival only
+# (215KB SVGs are PNG-in-SVG wrappers; HTML references the smaller PNGs instead)
+favicon-light.svg
+favicon-dark.svg
+favicon-dark.ico

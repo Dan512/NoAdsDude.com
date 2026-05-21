@@ -267,40 +267,30 @@ main > section:first-child { padding-top: 0; border-top: 0; }   /* manifesto */
   text-underline-offset: 0.18em;
 }
 
-.in-progress {
-  margin-top: var(--space-6);
-  font-size: 0.9375rem;
-  color: var(--muted);
-}
+/* Why-make-this section: prose paragraphs, intro + examples + closing */
+.why p { max-width: 62ch; margin-bottom: var(--space-4); }
+.why p:last-child { margin-bottom: 0; }
 
-.why-list {
-  list-style: none;
-  padding: 0;
+/* Rules section: definition list with serif title + sans body, breathing room */
+.rules-list {
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  counter-reset: why;
-}
-.why-list > li {
-  counter-increment: why;
-  padding-left: 2.25rem;
-  position: relative;
   max-width: 62ch;
 }
-.why-list > li::before {
-  content: counter(why);
-  position: absolute;
-  left: 0;
-  top: 0.05em;
+.rules-list dt {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.5rem;
-  color: var(--accent);
-  line-height: 1;
+  font-size: 1.25rem;
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0 0 var(--space-1);
 }
-.why-list strong { font-weight: 700; }
-.why-list strong + span::before { content: ' '; }
+.rules-list dd {
+  margin: 0;
+  color: var(--ink);
+}
 
 .support p { max-width: 62ch; }
 .support-cta {

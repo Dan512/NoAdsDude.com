@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Spike — microphone stack</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 12px;
+      font: 14px/1.5 system-ui, -apple-system, Segoe UI, sans-serif;
+      background: #12151c; color: #c9cfda;
+    }
+    h1 { font-size: 17px; margin: 0 0 4px; }
+    .sub { color: #7f8899; font-size: 13px; margin: 0 0 14px; }
+    a { color: #4ea3ff; }
+
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    button {
+      font: inherit; padding: 10px 15px; border-radius: 8px; cursor: pointer;
+      background: #232936; color: #c9cfda; border: 1px solid #333b4a;
+    }
+    button:disabled { opacity: 0.45; }
+    button.primary { background: #1c2536; border-color: #4ea3ff; color: #4ea3ff; }
+
+    .readout {
+      display: grid; grid-template-columns: 1fr auto; gap: 4px 14px;
+      padding: 16px; border-radius: 10px; margin-bottom: 12px;
+      background: #1a1f2b; border: 1px solid #2c3341;
+    }
+    #note { font-size: 46px; font-weight: 700; line-height: 1.05; color: #3ecf8e; }
+    #note.idle { color: #4a5364; }
+    #freq { color: #7f8899; font-size: 13px; }
+    .stat { text-align: right; font: 12px/1.7 ui-monospace, Consolas, monospace; color: #9aa4b2; }
+
+    .meter { height: 7px; border-radius: 4px; background: #232936; overflow: hidden; margin-top: 8px; }
+    .meter > div { height: 100%; width: 0; background: #4ea3ff; transition: width 60ms linear; }
+    #fluxBar > div { background: #ffb020; }
+
+    .label { font-size: 10px; letter-spacing: 1px; color: #6b7480; text-transform: uppercase; }
+
+    #candidates {
+      font: 12px/1.7 ui-monospace, Consolas, monospace; color: #9aa4b2;
+      padding: 12px 16px; border-radius: 10px; margin-bottom: 12px;
+      background: #1a1f2b; border: 1px solid #2c3341;
+    }
+
+    #report {
+      padding: 12px; border-radius: 8px;
+      background: #1a1f2b; border: 1px solid #2c3341;
+      font: 12px/1.55 ui-monospace, Consolas, monospace;
+      white-space: pre-wrap; word-break: break-word;
+    }
+    .ok { color: #3ecf8e; } .warn { color: #ffb020; } .fail { color: #ff6b6b; }
+  </style>
+  <script type="module" crossorigin src="/piano/assets/mic-C0QafQKv.js"></script>
+  <link rel="modulepreload" crossorigin href="/piano/assets/modulepreload-polyfill-B5Qt9EMX.js">
+</head>
+<body>
+  <h1>Spike — microphone stack</h1>
+  <p class="sub">
+    Does getUserMedia + AudioWorklet + FFT run in this WebView, and what are the device's
+    real audio numbers? <a href="../../index.html">← spikes</a>
+  </p>
+
+  <div class="controls">
+    <button id="start" class="primary">Start listening</button>
+    <button id="floor" disabled>Measure noise floor (2s silence)</button>
+    <button id="copy">Copy report</button>
+  </div>
+
+  <div class="readout">
+    <div>
+      <div id="note" class="idle">—</div>
+      <div id="freq">not listening</div>
+    </div>
+    <div class="stat" id="scores"></div>
+    <div style="grid-column: 1 / -1">
+      <div class="label">input level</div>
+      <div class="meter" id="levelBar"><div></div></div>
+      <div class="label" style="margin-top:10px">spectral flux</div>
+      <div class="meter" id="fluxBar"><div></div></div>
+    </div>
+  </div>
+
+  <div id="candidates">Top candidates appear here once listening.</div>
+
+  <div id="report">Checking whether this origin can record…</div>
+
+</body>
+</html>

@@ -45,8 +45,50 @@
     #status { margin-top: 10px; color: #7f8899; font-size: 13px; min-height: 1.4em; }
     footer { margin-top: 18px; font-size: 12px; }
     footer a { color: #4ea3ff; }
+
+    .controls label { display: flex; align-items: center; gap: 5px; font-size: 13px; }
+    .note-name {
+      position: absolute; color: #fff; font-weight: 700;
+      transform: translate(-50%, -50%);
+      text-shadow: 0 0 2px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.7);
+      pointer-events: none; line-height: 1;
+    }
+    #stage.hide-names .note-name { display: none; }
+
+    #keyboard { position: sticky; bottom: 8px; margin-top: 12px; z-index: 5; }
+    .kb-lane {
+      position: relative; height: 90px; overflow: hidden;
+      background: #171b24; border-radius: 8px 8px 0 0; margin-bottom: 2px;
+    }
+    .kb-lane-hitline {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+      background: rgba(255, 176, 32, 0.7); z-index: 2;
+    }
+    .kb-bar {
+      position: absolute; border-radius: 4px;
+      background: rgba(78, 163, 255, 0.85);
+      box-shadow: 0 0 6px rgba(78, 163, 255, 0.4);
+      will-change: transform;
+    }
+    .kb-row {
+      position: relative; display: flex; height: 108px;
+      border-radius: 8px; overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+    .kb-white {
+      flex: 1; background: #f7f7f9; border: 1px solid #9aa0ab; border-radius: 0 0 4px 4px;
+      color: #555; font-size: 11px;
+      display: flex; align-items: flex-end; justify-content: center; padding-bottom: 5px;
+    }
+    .kb-white.kb-active { background: #4ea3ff; color: #fff; }
+    .kb-black {
+      position: absolute; top: 0; height: 62%;
+      background: #1b1e26; border-radius: 0 0 4px 4px;
+      transform: translateX(-50%); z-index: 2;
+    }
+    .kb-black.kb-active { background: #4ea3ff; }
   </style>
-  <script type="module" crossorigin src="/piano/assets/main-D5ChJTl_.js"></script>
+  <script type="module" crossorigin src="/piano/assets/main-D81_ce2z.js"></script>
   <link rel="modulepreload" crossorigin href="/piano/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/piano/assets/opensheetmusicdisplay.min-CQSAqopO.js">
 </head>
@@ -67,10 +109,13 @@
         <option value="1" selected>100%</option>
       </select>
     </label>
+    <label><input type="checkbox" id="showNames" checked> Note names</label>
+    <label><input type="checkbox" id="showKeyboard" checked> Keyboard</label>
   </div>
 
   <div id="stage"></div>
   <div id="status">Loading score…</div>
+  <div id="keyboard"></div>
 
   <footer><a href="spikes/index.html">Phase 0 spikes</a></footer>
 

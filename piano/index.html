@@ -88,37 +88,66 @@
       transform: translateX(-50%); z-index: 2;
     }
     .kb-black.kb-active { background: #4ea3ff; }
+
+    .sub { color: #7f8899; font-size: 14px; margin: 0 0 18px; }
+    #songList { display: grid; gap: 10px; }
+    .song-card {
+      display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto;
+      text-align: left; padding: 14px 16px; border-radius: 12px; cursor: pointer;
+      background: #1a1f2b; border: 1px solid #2c3341; color: inherit; font: inherit;
+    }
+    .song-card:active { background: #232936; }
+    .song-title { font-size: 15px; font-weight: 600; color: #c9cfda; }
+    .song-meta { font-size: 12.5px; color: #7f8899; grid-column: 1; }
+    .song-level {
+      grid-row: 1 / span 2; align-self: center; font-size: 12px; font-weight: 700;
+      color: #4ea3ff; background: #1c2536; border: 1px solid #31435c;
+      padding: 4px 9px; border-radius: 999px;
+    }
+    #back {
+      padding: 6px 13px; font-size: 20px; line-height: 1; border-radius: 8px;
+      background: #232936; color: #c9cfda; border: 1px solid #333b4a;
+    }
+    #library footer { margin-top: 22px; }
   </style>
-  <script type="module" crossorigin src="/piano/assets/main-DgAwLRfQ.js"></script>
+  <script type="module" crossorigin src="/piano/assets/main-DrfHCXk5.js"></script>
   <link rel="modulepreload" crossorigin href="/piano/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/piano/assets/opensheetmusicdisplay.min-CQSAqopO.js">
 </head>
 <body>
-  <header>
-    <h1>Ode to Joy</h1>
-    <span class="composer">Beethoven · simplified</span>
-  </header>
-
-  <div class="controls">
-    <button id="play" class="primary" disabled>Play</button>
-    <button id="stop" disabled>Stop</button>
-    <label>
-      Tempo
-      <select id="tempo">
-        <option value="0.6">60%</option>
-        <option value="0.8">80%</option>
-        <option value="1" selected>100%</option>
-      </select>
-    </label>
-    <label><input type="checkbox" id="showNames" checked> Note names</label>
-    <label><input type="checkbox" id="showKeyboard" checked> Keyboard</label>
+  <div id="library" hidden>
+    <header><h1>Free Piano</h1></header>
+    <p class="sub">Pick a song and play along. Levels are suggestions, not locks.</p>
+    <div id="songList"></div>
+    <footer><a href="spikes/index.html">Phase 0 spikes</a></footer>
   </div>
 
-  <div id="stage"></div>
-  <div id="status">Loading score…</div>
-  <div id="keyboard"></div>
+  <div id="player" hidden>
+    <header>
+      <button id="back" title="Back to songs">‹</button>
+      <h1 id="songTitle"></h1>
+      <span class="composer" id="songComposer"></span>
+    </header>
 
-  <footer><a href="spikes/index.html">Phase 0 spikes</a></footer>
+    <div class="controls">
+      <button id="play" class="primary" disabled>Play</button>
+      <button id="stop" disabled>Stop</button>
+      <label>
+        Tempo
+        <select id="tempo">
+          <option value="0.6">60%</option>
+          <option value="0.8">80%</option>
+          <option value="1" selected>100%</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="showNames" checked> Note names</label>
+      <label><input type="checkbox" id="showKeyboard" checked> Keyboard</label>
+    </div>
+
+    <div id="stage"></div>
+    <div id="status">Loading…</div>
+    <div id="keyboard"></div>
+  </div>
 
 </body>
 </html>

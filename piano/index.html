@@ -68,6 +68,9 @@
     .kb-bar {
       position: absolute; border-radius: 4px;
       background: rgba(78, 163, 255, 0.85);
+      /* Black outline so back-to-back notes on the same key read as separate strikes
+         instead of one long bar (box-sizing keeps it inside the duration height). */
+      border: 2px solid #000;
       box-shadow: 0 0 6px rgba(78, 163, 255, 0.4);
       will-change: transform;
     }
@@ -110,7 +113,7 @@
     }
     #library footer { margin-top: 22px; }
   </style>
-  <script type="module" crossorigin src="/piano/assets/main-DrfHCXk5.js"></script>
+  <script type="module" crossorigin src="/piano/assets/main-DCrni4ky.js"></script>
   <link rel="modulepreload" crossorigin href="/piano/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/piano/assets/opensheetmusicdisplay.min-CQSAqopO.js">
 </head>
@@ -131,6 +134,7 @@
 
     <div class="controls">
       <button id="play" class="primary" disabled>Play</button>
+      <button id="restart" title="Restart from the top" disabled>↻</button>
       <button id="stop" disabled>Stop</button>
       <label>
         Tempo
@@ -138,6 +142,13 @@
           <option value="0.6">60%</option>
           <option value="0.8">80%</option>
           <option value="1" selected>100%</option>
+        </select>
+      </label>
+      <label>
+        <select id="hands" hidden>
+          <option value="both" selected>Both hands</option>
+          <option value="right">Right hand</option>
+          <option value="left">Left hand</option>
         </select>
       </label>
       <label><input type="checkbox" id="showNames" checked> Note names</label>

@@ -92,6 +92,17 @@
     }
     .kb-black.kb-active { background: #4ea3ff; }
 
+    /* Left hand reads green, right hand blue — the same convention Synthesia uses, so it's
+       familiar. Hands are also spatially separated on the keyboard, so colour is a redundant
+       cue rather than the only one. These rules follow the blue ones so they win on order. */
+    .kb-bar.kb-bar-left {
+      background: rgba(62, 207, 142, 0.85);
+      box-shadow: 0 0 6px rgba(62, 207, 142, 0.4);
+    }
+    .kb-white.kb-active-left { background: #3ecf8e; color: #10261c; }
+    .kb-black.kb-active-left { background: #3ecf8e; }
+    .note-highlight.left-hand { background: rgba(62, 207, 142, 0.4); }
+
     .sub { color: #7f8899; font-size: 14px; margin: 0 0 18px; }
     #songList { display: grid; gap: 10px; }
     .song-card {
@@ -113,7 +124,7 @@
     }
     #library footer { margin-top: 22px; }
   </style>
-  <script type="module" crossorigin src="/piano/assets/main-DCrni4ky.js"></script>
+  <script type="module" crossorigin src="/piano/assets/main-BKo3ug4h.js"></script>
   <link rel="modulepreload" crossorigin href="/piano/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/piano/assets/opensheetmusicdisplay.min-CQSAqopO.js">
 </head>
